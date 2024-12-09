@@ -1,0 +1,1 @@
+This is a repository for the Capstone project in Heicoders SE100: Responsive Web Development course.
