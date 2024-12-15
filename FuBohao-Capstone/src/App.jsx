@@ -20,7 +20,7 @@ const StockForm = ({ addStock }) => {
       <img src="./assets/stocks.jpg" alt="Stocks" />
     </section>
   );
-
+    
   const form = (
     <section className="middle-container">
       <form onSubmit={handleSubmit}>
