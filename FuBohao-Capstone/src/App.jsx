@@ -14,33 +14,71 @@ const StockForm = ({ addStock }) => {
     setPrice('');
   };
 
+  const title = (
+    <section className="top-container">
+      <h1>Finance Dashboard</h1>
+      <img src="./assets/stocks.jpg" alt="Stocks" />
+    </section>
+  );
+
+  const form = (
+    <section className="middle-container">
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Stock Symbol"
+          value={symbol}
+          onChange={(submit) => setSymbol(submit.target.value)}
+          required
+        />
+        <input
+          type="number"
+          placeholder="Quantity"
+          value={quantity}
+          onChange={(submit) => setQuantity(submit.target.value)}
+          required
+        />
+        <input
+          type="number"
+          placeholder="Purchase Price"
+          value={price}
+          onChange={(submit) => setPrice(submit.target.value)}
+          required
+        />
+        <button type="submit">Add Stock</button>
+      </form>
+    </section>
+  );
+
+  const stockListHeader = (
+    <section className="bottom-container">
+      <h2>Stock List</h2>
+      <p>No stocks added yet.</p>
+    </section>
+  );
+
+  const formContainer = (
+    <div className="form-container">
+      {title}
+      {form}
+      {stockListHeader}
+    </div>
+  );
+
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Stock Symbol"
-        value={symbol}
-        onChange={(submit) => setSymbol(submit.symbol.value)}
-        required
-      />
-      <input
-        type="number"
-        placeholder="Quantity"
-        value={quantity}
-        onChange={(e) => setQuantity(e.quantity.value)}
-        required
-      />
-      <input
-        type="number"
-        placeholder="Purchase Price"
-        value={price}
-        onChange={(e) => setPrice(e.price.value)}
-        required
-      />
-      <button type="submit">Add Stock</button>
-    </form>
+    <div>
+      {formContainer}
+    </div>
   );
 };
 
 
-export default StockForm;
+function App() {
+  return (
+    <div>
+      <StockForm />
+    </div>
+  );
+}
+
+export default App;
