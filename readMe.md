@@ -1,1 +1,1 @@
-This is a repository for the Capstone project in Heicoders SE100: Responsive Web Development course.
+This is a repository for the Capstone Project: Finance Dashboard in Heicoders SE100: Responsive Web Development course.
