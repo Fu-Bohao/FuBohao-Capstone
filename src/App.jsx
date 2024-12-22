@@ -1,84 +1,53 @@
-import { useState } from 'react'
-import './App.css'
-
-const StockForm = ({ addStock }) => {
-  const [symbol, setSymbol] = useState('');
-  const [quantity, setQuantity] = useState('');
-  const [price, setPrice] = useState('');
-
-  const handleSubmit = (submit) => {
-    submit.preventDefault();
-    addStock({ symbol, quantity: parseInt(quantity), price: parseFloat(price) });
-    setSymbol('');
-    setQuantity('');
-    setPrice('');
-  };
-
-  const title = (
-    <section className="top-container">
-      <h1>Finance Dashboard</h1>
-      <img src="./assets/stocks.jpg" alt="Stocks" />
-    </section>
-  );
-    
-  const form = (
-    <section className="middle-container">
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Stock Symbol"
-          value={symbol}
-          onChange={(submit) => setSymbol(submit.target.value)}
-          required
-        />
-        <input
-          type="number"
-          placeholder="Quantity"
-          value={quantity}
-          onChange={(submit) => setQuantity(submit.target.value)}
-          required
-        />
-        <input
-          type="number"
-          placeholder="Purchase Price"
-          value={price}
-          onChange={(submit) => setPrice(submit.target.value)}
-          required
-        />
-        <button type="submit">Add Stock</button>
-      </form>
-    </section>
-  );
-
-  const stockListHeader = (
-    <section className="bottom-container">
-      <h2>Stock List</h2>
-      <p>No stocks added yet.</p>
-    </section>
-  );
-
-  const formContainer = (
-    <div className="form-container">
-      {title}
-      {form}
-      {stockListHeader}
-    </div>
-  );
-
-  return (
-    <div>
-      {formContainer}
-    </div>
-  );
-};
-
+import { useState } from "react";
+import StockContext from "./components/contexts/StockContext";
+import StockForm from "./components/StockForm";
+import './StockStyling.css';
+import stockImage from './assets/stocks.jpg';
+import StockList from "./components/StockList";
 
 function App() {
-  return (
-    <div>
-      <StockForm />
-    </div>
-  );
+    const [stocks, setStocks] = useState([]);
+    const [symbol, setSymbol] = useState("");
+    const [quantity, setQuantity] = useState("");
+    const [purchasePrice, setPurchasePrice] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    const addStock = (stock) => {
+        setStocks((prevStocks) => [...prevStocks, stock]);
+    };
+
+    return (
+        <StockContext.Provider
+            value={{
+                stocks,
+                addStock,
+                symbol,
+                setSymbol,
+                quantity,
+                setQuantity,
+                purchasePrice,
+                setPurchasePrice,
+                loading,
+                setLoading,
+                error,
+                setError
+            }}
+        >
+            <div className="app-container">
+                <section className="image-container">
+                    <img src={stockImage} alt="stocks" className="stock-image" />
+                </section>
+                <section className="title-container">
+                    <h1>Finance Dashboard</h1>
+                </section>
+                <section className="form-container">
+                    <StockForm />
+                    <StockList />
+                </section>
+            </div>
+        </StockContext.Provider>
+    );
 }
 
 export default App;
