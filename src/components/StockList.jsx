@@ -6,7 +6,7 @@ function StockList() {
     const [stockData, setStockData] = useState({});
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const API_KEY = "demo";
+    const API_KEY = "2DE014XRGWY8JQFV";
 
     // Fetch current price for each stock
     const fetchStockPrices = useCallback(async () => {
