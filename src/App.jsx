@@ -1,7 +1,7 @@
 import { useState } from "react";
 import StockContext from "./components/contexts/StockContext";
 import StockForm from "./components/StockForm";
-import './StockStyling.css';
+import './components/StockStyling.css';
 import stockImage from './assets/stocks.jpg';
 import StockList from "./components/StockList";
 
